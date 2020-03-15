@@ -66,6 +66,14 @@ class JogoDaMemoria {
 		this.heroisOcultos = heroisOcultos;
 	}
 
+	exibirHerois(nomeDoHeroi) {
+		// Vamos procurar esse heroi pelo nome em nossos heroisIniciais
+		// vamos obter somente a imagem dele
+		const { img } = this.heroisIniciais.find(({nome}) => nomeDoHeroi === nome)
+		// vamos criar a funcao na tela, para exibir somente o heroi selecionado
+		this.tela.exibirHerois(nomeDoHeroi, img)
+	}
+
 	verificarSelecao(id, nome) {
 		const item = { id, nome }
 		 // vamos verificar a quantidade de herois selecionados
@@ -78,22 +86,25 @@ class JogoDaMemoria {
 				 this.heroisSelecionados.push(item)
 				 break;
 			case 1:
-					// se a quantidade de escolhidos for 1, significa
-					// que o usuario só pode escolher mais um
-					// vamos obter o primeiro item da lista
-					const [opcao1] = this.heroisSelecionados
-					// zerar item para não selecionar mais dois
-					this.heroisSelecionados = []
-					// conferimos se os nomes e ids batem conforme o esperado
-					if (opcao1.nome === item.nome && 
-						// aqui verificamos se são ids diferentes para
-						// o usuario não cliar duas vezes no mesmo
-						opcao1.id !== item.id
-						) {
-							alert('combinação correta!', item.nome);
-							return;
-						}
-						alert('combinação incorreta!');
+				// se a quantidade de escolhidos for 1, significa
+				// que o usuario só pode escolher mais um
+				// vamos obter o primeiro item da lista
+				const [opcao1] = this.heroisSelecionados
+				// zerar item para não selecionar mais dois
+				this.heroisSelecionados = []
+				// conferimos se os nomes e ids batem conforme o esperado
+				if (opcao1.nome === item.nome && 
+					// aqui verificamos se são ids diferentes para
+					// o usuario não cliar duas vezes no mesmo
+					opcao1.id !== item.id
+					) {
+						this.exibirHerois(item.nome);
+						// como o padrão e true, não precisa passar nada
+						this.tela.exibirMensagem();
+						return;
+					}
+					this.tela.exibirMensagem(false);
+					// fim do case!
 				break;
 			 default:
 				 break;
