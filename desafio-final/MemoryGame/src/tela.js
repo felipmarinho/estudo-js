@@ -5,12 +5,16 @@ class Tela {
 	static obterCodigoHtml(item) {
 		return `
 			<div class="col-md-3">
-				<div class="card" style="width: 50%;">
-					<img src="${item.img}" name="${item.name}" class="card-img-top" alt="...">
+				<div class="card" style="width: 50%;" onclick="window.verificarSelecao('${item.id}', '${item.nome}')">
+					<img src="${item.img}" name="${item.nome}" class="card-img-top" alt="...">
 				</div>
 				<br /> 
 			</div>
 		`;
+	}
+
+	static configurarBotaoVerificarSelecao(funcaoOnClick) {
+		window.verificarSelecao = funcaoOnClick
 	}
 
 	static alterarConteudoHTML(codigoHtml) {
