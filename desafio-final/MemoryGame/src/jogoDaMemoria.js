@@ -2,8 +2,9 @@ class JogoDaMemoria {
 	// se mandar um obj = { tela: 1, idade: 2, etc: 3}
 	// vai ignorar o resto das propriedades e pegar somente a propriedade
 	// tela
-	constructor({ tela }) {
+	constructor({ tela, util }) {
 		this.tela = tela
+		this.util = util
 		this.heroisIniciais = [
 			{ img: './arquivos/batman.png', nome: 'Batman'},
 			{ img: './arquivos/cap.png', nome: 'Capitão America'},
@@ -27,7 +28,7 @@ class JogoDaMemoria {
 		this.tela.configurarBotaoVerificarSelecao(this.verificarSelecao.bind(this))
 	}
 
-	embaralhar () {
+	async embaralhar () {
 		console.log('heroisIniciais', this.heroisIniciais);
 		const copias = this.heroisIniciais
 		// duplicar os itens
@@ -40,12 +41,12 @@ class JogoDaMemoria {
 		.sort(() => Math.random() - 0.5)
 
 		this.tela.atualizarImagens(copias)
-		console.log('Copias', copias);
-		
+		this.tela.exibirCarregando()
+
 		// vamos esperar 1 segundo para atualizar a tela
-		setTimeout(() => {
-			this.esconderHerois(copias);
-		}, 1000)
+		await this.util.timeout(1000)
+		this.esconderHerois(copias);
+		this.tela.exibirCarregando(false);
 	}
 
 	esconderHerois(herois) {
