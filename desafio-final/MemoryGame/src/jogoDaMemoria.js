@@ -9,7 +9,7 @@ class JogoDaMemoria {
 			{ img: './arquivos/batman.png', nome: 'Batman'},
 			{ img: './arquivos/cap.png', nome: 'Capitão America'},
 			{ img: './arquivos/demolidor.png', nome: 'Demolidor'},
-			{ img: './arquivos/Flash.png', nome: 'Flash'},
+			{ img: './arquivos/flash.png', nome: 'Flash'},
 			{ img: './arquivos/gaviao.png', nome: 'Gaviao'},
 			{ img: './arquivos/groot.png', nome: 'Groot'},
 			{ img: './arquivos/logan.png', nome: 'Logan'},
